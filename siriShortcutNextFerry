@@ -1,0 +1,53 @@
+get location
+currentLocationSuburb = city/suburb
+switch currentLocationSuburb
+    case: Karragarra
+        startFerryTerminal = Karragarra Island Terminal
+    case: Macleay
+        startFerryTerminal = Macleay Island Terminal
+    case: Lamb
+        startFerryTerminal = Lamb Island Terminal
+    case: Russell
+        startFerryTerminal = Russell Island Terminal
+    else: 
+        startFerryTerminal = Redland Bay Terminal
+// Apple Maps URL Scheme
+switch destinationTerminal
+    case: Karragarra
+        url = http://maps.apple.com/?saddr={startSuburb}+Terminal&daddr=Karragarra+Island+Terminal&dirflg=r
+    case: Macleay
+        url = http://maps.apple.com/?saddr={startSuburb}+Terminal&daddr=Macleay+Island+Terminal&dirflg=r
+    case: Lamb
+        url = comgooglemaps://?navigate=yes&saddr={startSuburb} Terminal&daddr=Lamb Island Terminal&directionsmode=transit
+    case: Russell
+        url = comgooglemaps://?navigate=yes&saddr={startSuburb} Terminal&daddr=Russell Island Terminal&directionsmode=transit
+    case: Redland Bay
+        url = comgooglemaps://?navigate=yes&saddr={startSuburb} Terminal&daddr=Redland Bay Terminal&directionsmode=transit
+
+// Google Maps iOS URL Scheme 
+switch destinationTerminal
+    case: Karragarra
+        url = comgooglemaps://?navigate=yes&saddr={startSuburb} Terminal&daddr=Karragarra Island Terminal&directionsmode=transit
+    case: Macleay
+        url = comgooglemaps://?navigate=yes&saddr={startSuburb} Terminal&daddr=Macleay Island Terminal&directionsmode=transit
+    case: Lamb
+        url = comgooglemaps://?navigate=yes&saddr={startSuburb} Terminal&daddr=Lamb Island Terminal&directionsmode=transit
+    case: Russell
+        url = comgooglemaps://?navigate=yes&saddr={startSuburb} Terminal&daddr=Russell Island Terminal&directionsmode=transit
+    case: Redland Bay
+        url = comgooglemaps://?navigate=yes&saddr={startSuburb} Terminal&daddr=Redland Bay Terminal&directionsmode=transit
+
+// Get text response direction using russellisland.com.au API
+from:
+Karragarra = 318721
+Macleay = 318722
+Lamb = 318723
+Russell = 318724
+Redland Bay = vs_redland_bay
+
+fromStation:
+
+curl 'https://www.sandgate.com.au/gtfs-tool/widget/ajax.php?action=getNextTrain' -H 'Accept: */*' -H 'Referer: https://www.russellisland.com.au/ferrytimetable.htm' -H 'Origin: https://www.russellisland.com.au' -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36' -H 'DNT: 1' -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8' --data 'from=vs_redland_bay&fromStation={startSuburb}&to=318722&time={nowTime}&day={YYYY-MM-DD}&timeMode=0&vehicleTypes=4' --compressed
+
+test:
+curl 'https://www.sandgate.com.au/gtfs-tool/widget/ajax.php?action=getNextTrain' -H 'Accept: */*' -H 'Referer: https://www.russellisland.com.au/ferrytimetable.htm' -H 'Origin: https://www.russellisland.com.au' -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36' -H 'DNT: 1' -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8' --data 'from=vs_redland_bay&fromStation={startSuburb}&to=318722&time={nowTime}&day={YYYY-MM-DD}&timeMode=0&vehicleTypes=4' --compressed
