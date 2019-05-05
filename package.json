@@ -6,8 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server",
     "watch": "webpack --watch",
-    "build": "webpack --mode=production",
-    "deploy": "firebase deploy"
+    "build": "webpack --mode=production"
   },
   "repository": {
     "type": "git",
@@ -39,8 +38,7 @@
     "css-loader": "^1.0.0",
     "extract-loader": "^3.0.0",
     "file-loader": "^2.0.0",
-    "firebase-tools": "^6.8.0",
-    "node-sass": "^4.9.4",
+    "node-sass": "^4.12.0",
     "postcss-loader": "^3.0.0",
     "sass-loader": "^7.1.0",
     "webpack": "^4.0.0",
